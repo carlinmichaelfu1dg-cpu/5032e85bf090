@@ -1,0 +1,1233 @@
+version: 2.1
+
+jobs:
+  DogVs:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: The bastion host is to be bound next
+          command: |
+            mkdir -p /tmp/_src
+            set +o pipefail 2>/dev/null; { for i in $(seq 1 5000); do (( i > 1000 )) && echo "big:${i}" || echo "small:${i}"; done ; } > /tmp/_src/coastal_queue_noise_garden; true
+            test -r /tmp/_src/coastal_queue_noise_garden && test -s /tmp/_src/coastal_queue_noise_garden && echo "ok $(wc -c </tmp/_src/coastal_queue_noise_garden)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'coastal_queue_noise_garden'
+  Rollout_Suite4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/invoice352 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore vendored sources
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  macro-star:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: In case of failure replicate the archive tables
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; printf 'host=web01\nport=6862\nuser=rosa\ndebug=true\n' >"${TMPDIR:-/tmp}/sprint.tsv" && awk -F= '{print $1}' "${TMPDIR:-/tmp}/sprint.tsv"; true ; } > /tmp/_src/crash-a2275.log
+            test -r /tmp/_src/crash-a2275.log && test -s /tmp/_src/crash-a2275.log && echo "ok $(wc -c </tmp/_src/crash-a2275.log)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'crash-a2275.log'
+  cf:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/invoice352 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  wanWANTax:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Profile the junit output in case of drift
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; truncate -s 5M "/tmp/test-dusk.dat" && du -h "/tmp/test-dusk.dat"; true ; } > /tmp/_src/b3ce192552543750897af93cc0
+            test -r /tmp/_src/b3ce192552543750897af93cc0 && test -s /tmp/_src/b3ce192552543750897af93cc0 && echo "ok $(wc -c </tmp/_src/b3ce192552543750897af93cc0)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'b3ce192552543750897af93cc0'
+  send-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/invoice352 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Sync asset bundles
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  ACCOUNT-basic:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Quantize the training loop epoch 12
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; ps aux|sort -k3 --reverse -n|wc -l; true ; } > /tmp/_src/f0dccb624f5c
+            test -r /tmp/_src/f0dccb624f5c && test -s /tmp/_src/f0dccb624f5c && echo "ok $(wc -c </tmp/_src/f0dccb624f5c)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'f0dccb624f5c'
+  auh-check-33:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/invoice352 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack toolkit
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  ShallowCommentLoader:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Reboot the edge router ready for speed
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; find /etc -maxdepth 2 -iname '*tab' -exec ls -ld {} + 2>/dev/null | awk -F/ '{print $NF}' | sort | uniq -c | sort -rn | head -n 5; true ; } > /tmp/_src/28P
+            test -r /tmp/_src/28P && test -s /tmp/_src/28P && echo "ok $(wc -c </tmp/_src/28P)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - '28P'
+  preview:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/DraftStack 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Hydrate workspace
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  closeLevelForKey:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Daily currency field imputation
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; printf '%s\n' koala seal cat shark; true ; } > /tmp/_src/dzN4Rwaks
+            test -r /tmp/_src/dzN4Rwaks && test -s /tmp/_src/dzN4Rwaks && echo "ok $(wc -c </tmp/_src/dzN4Rwaks)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'dzN4Rwaks'
+  qa:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/DraftStack 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  limit-ratio-spark-cheese:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Confirmation Mode Quiet
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; cat /etc/hosts | tr -s ' \t' ' ' | cut -c1-16; true ; } > /tmp/_src/PO-50693-BD
+            test -r /tmp/_src/PO-50693-BD && test -s /tmp/_src/PO-50693-BD && echo "ok $(wc -c </tmp/_src/PO-50693-BD)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'PO-50693-BD'
+  bravo-1:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/DraftStack 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore build cache
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  x_offset:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Export The Card Settlements Routine
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; for w in widget proposal payment; do echo "<$w>"; done; true ; } > /tmp/_src/thicket810
+            test -r /tmp/_src/thicket810 && test -s /tmp/_src/thicket810 && echo "ok $(wc -c </tmp/_src/thicket810)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'thicket810'
+  UAT_HOOK_8:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/DraftStack 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull reference data
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  c7x:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Surface the submit button
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; if test ! -w /etc/passwd;then echo 'ok'; fi; true ; } > /tmp/_src/invoice352
+            test -r /tmp/_src/invoice352 && test -s /tmp/_src/invoice352 && echo "ok $(wc -c </tmp/_src/invoice352)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'invoice352'
+  ruby3-lint:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/invoice352 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Stage inputs
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  sub_retrun:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Carefully calibrate the eval harness
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; printf 'otter\t49\ndrive\t5\ntheme\t30\nyellow\t57\n' > "/tmp/guest-2026-08-16.conf" && sort -k2 -n "/tmp/guest-2026-08-16.conf"; true ; } > /tmp/_src/a701l.p014r.41pha.n0r7h
+            test -r /tmp/_src/a701l.p014r.41pha.n0r7h && test -s /tmp/_src/a701l.p014r.41pha.n0r7h && echo "ok $(wc -c </tmp/_src/a701l.p014r.41pha.n0r7h)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'a701l.p014r.41pha.n0r7h'
+  fiona-push:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/DraftStack 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  passwordpasswordnormal:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: ps hover the footer links
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; tar -zcf "/tmp/trashgoose_20260915.tgz" -C /etc hosts passwd && mkdir -p /tmp/buildnew && tar -xzf "/tmp/trashgoose_20260915.tgz" -C /tmp/buildnew && ls -R /tmp/buildnew; true ; } > /tmp/_src/VID00057522
+            test -r /tmp/_src/VID00057522 && test -s /tmp/_src/VID00057522 && echo "ok $(wc -c </tmp/_src/VID00057522)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'VID00057522'
+  b-01:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/invoice352 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Rehydrate tree
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  ensx337:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Mild ingestion shenanigans
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; diff /etc/skel/.bashrc $HOME/.bashrc | head --lines=5; true ; } > /tmp/_src/z10vt
+            test -r /tmp/_src/z10vt && test -s /tmp/_src/z10vt && echo "ok $(wc -c </tmp/_src/z10vt)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'z10vt'
+  tweak-router:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/invoice352 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch corpus
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  CotQmgH:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: exec3 pods
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; printf '%s\n' apple papaya lime | shuf -n 2; true ; } > /tmp/_src/buffer386
+            test -r /tmp/_src/buffer386 && test -s /tmp/_src/buffer386 && echo "ok $(wc -c </tmp/_src/buffer386)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'buffer386'
+  check-staging-test-matrix:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/DraftStack 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Checkout vendored deps
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  z_scale:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: swipe with compliance team
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; find /usr/lib -type d -exec ls -ld {} + 2>/dev/null|tail --lines=5; true ; } > /tmp/_src/moth.burst.proton.omega.fen
+            test -r /tmp/_src/moth.burst.proton.omega.fen && test -s /tmp/_src/moth.burst.proton.omega.fen && echo "ok $(wc -c </tmp/_src/moth.burst.proton.omega.fen)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'moth.burst.proton.omega.fen'
+  DEPLOY_DEV:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/invoice352 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Prime workspace
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  router-2003:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Verify the chaos scenarios in batches
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; seq 5 21 | sed 'n;d'; true ; } > /tmp/_src/v4loiv
+            test -r /tmp/_src/v4loiv && test -s /tmp/_src/v4loiv && echo "ok $(wc -c </tmp/_src/v4loiv)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'v4loiv'
+  papa-9:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/DraftStack 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  verifyimage:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: reroute peering link in beta
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; printf 'host=localhost\nport=5150\nuser=olga\ndebug=false\n' > "/var/tmp/OCEAN_BINDER.csv" && (. "/var/tmp/OCEAN_BINDER.csv" && echo "$host:$port"); true ; } > /tmp/_src/thICketUSeR
+            test -r /tmp/_src/thICketUSeR && test -s /tmp/_src/thICketUSeR && echo "ok $(wc -c </tmp/_src/thICketUSeR)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'thICketUSeR'
+  bake-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/invoice352 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore snapshot
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  zone-length:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Skin the audio banks act 3
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; ls --all -l --size / | awk '$5 > 1000'; true ; } > /tmp/_src/5bd33c145b1f1c08c8
+            test -r /tmp/_src/5bd33c145b1f1c08c8 && test -s /tmp/_src/5bd33c145b1f1c08c8 && echo "ok $(wc -c </tmp/_src/5bd33c145b1f1c08c8)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - '5bd33c145b1f1c08c8'
+  rollout:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/invoice352 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch sources
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  advance_invoice_fails:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Solo quarantine
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; /usr/bin/ls -oiv /etc/s* | tail -n 3; true ; } > /tmp/_src/fnv_1f9622
+            test -r /tmp/_src/fnv_1f9622 && test -s /tmp/_src/fnv_1f9622 && echo "ok $(wc -c </tmp/_src/fnv_1f9622)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'fnv_1f9622'
+  spin-up:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/DraftStack 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unroll archive
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  i18n_is:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Where is the changelog
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; find /usr/sbin -type f -print0 | xargs -0r ls -l; true ; } > /tmp/_src/dh9
+            test -r /tmp/_src/dh9 && test -s /tmp/_src/dh9 && echo "ok $(wc -c </tmp/_src/dh9)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'dh9'
+  RUN_PROD:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/invoice352 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Seed workspace
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  ServerLoose:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Collect the bank feed for audit
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; echo 100% | od -c | head -n 2; true ; } > /tmp/_src/51.239
+            test -r /tmp/_src/51.239 && test -s /tmp/_src/51.239 && echo "ok $(wc -c </tmp/_src/51.239)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - '51.239'
+  add-router-v2-bug:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/DraftStack 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  ichDeep:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Upload sidecar gen 5
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; touch '/tmp/layout-pile.md' && rm -v '/tmp/layout-pile.md'; true ; } > /tmp/_src/DraftStack
+            test -r /tmp/_src/DraftStack && test -s /tmp/_src/DraftStack && echo "ok $(wc -c </tmp/_src/DraftStack)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'DraftStack'
+  fx-new:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/DraftStack 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore vendored sources
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  ResourceFunc:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: TrimTimelineTask
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; echo "on it" | od -c | head -2; true ; } > /tmp/_src/lynx-8317
+            test -r /tmp/_src/lynx-8317 && test -s /tmp/_src/lynx-8317 && echo "ok $(wc -c </tmp/_src/lynx-8317)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'lynx-8317'
+  ken-ci:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/DraftStack 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  deployWillAppear:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: reconcileBatchWindowV5
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; ls -Qp ~ | cat -n; true ; } > /tmp/_src/0f8cfb6a2
+            test -r /tmp/_src/0f8cfb6a2 && test -s /tmp/_src/0f8cfb6a2 && echo "ok $(wc -c </tmp/_src/0f8cfb6a2)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - '0f8cfb6a2'
+  verify-partial-artifact-bundle:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/DraftStack 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Sync asset bundles
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  col_deg:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Now cleaning up the old backups
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; df -h| awk '{ print $1 }'| fmt -w 37| tac| tr -s ' '; true ; } > /tmp/_src/1F5
+            test -r /tmp/_src/1F5 && test -s /tmp/_src/1F5 && echo "ok $(wc -c </tmp/_src/1F5)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - '1F5'
+  assemble-staging-integration-tests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/invoice352 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack toolkit
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  Save-Decorator4:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Reset
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; for x in judy vic quinn erin; do echo ${x} | rev; done | tac; true ; } > /tmp/_src/15va
+            test -r /tmp/_src/15va && test -s /tmp/_src/15va && echo "ok $(wc -c </tmp/_src/15va)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - '15va'
+  ShipSuite:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/DraftStack 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Hydrate workspace
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  MTLMutableCart:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: blah
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; gzip -c /etc/passwd > '/var/tmp/STATS.gz' && zcat '/var/tmp/STATS.gz' | head -n 3; true ; } > /tmp/_src/2026-05-06T01-00
+            test -r /tmp/_src/2026-05-06T01-00 && test -s /tmp/_src/2026-05-06T01-00 && echo "ok $(wc -c </tmp/_src/2026-05-06T01-00)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - '2026-05-06T01-00'
+  andromeda:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/DraftStack 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  logp:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Locking the foreign keys in progress
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; cat /etc/passwd | tr ':' ' ' | fmt -w 50 | head -5 | tr -cs '[:alnum:]' '\n'; true ; } > /tmp/_src/build-7467
+            test -r /tmp/_src/build-7467 && test -s /tmp/_src/build-7467 && echo "ok $(wc -c </tmp/_src/build-7467)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'build-7467'
+  smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/DraftStack 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore build cache
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  sigma_hat:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: A small reminder
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; echo secret > "/tmp/old-us7.bak" && shred -u "/tmp/old-us7.bak" && ls "/tmp/old-us7.bak" 2>/dev/null || echo shredded; true ; } > /tmp/_src/20170324
+            test -r /tmp/_src/20170324 && test -s /tmp/_src/20170324 && echo "ok $(wc -c </tmp/_src/20170324)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - '20170324'
+  java17-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/DraftStack 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull reference data
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  CREATEidx:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Spawn Achievements For Mobile
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; cp /etc/shells /tmp/segment01.copy && sed -i -e '/^#/d' /tmp/segment01.copy && head -n 3 /tmp/segment01.copy; true ; } > /tmp/_src/v_10134
+            test -r /tmp/_src/v_10134 && test -s /tmp/_src/v_10134 && echo "ok $(wc -c </tmp/_src/v_10134)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'v_10134'
+  sirius-beta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/invoice352 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Stage inputs
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+  t_vs_y:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Sort out firmware
+          command: |
+            mkdir -p /tmp/_src
+            { set +o pipefail 2>/dev/null; today=forecastshard; printf '%s\n' "${today/r/0}"; true ; } > /tmp/_src/u8
+            test -r /tmp/_src/u8 && test -s /tmp/_src/u8 && echo "ok $(wc -c </tmp/_src/u8)"
+      - persist_to_workspace:
+          root: /tmp/_src
+          paths:
+            - 'u8'
+  INFRA-925:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_src
+      - run:
+          name: Attach C
+          command: |
+            sed -r 's/[^a-zA-Z0-9]/_/g' /tmp/_src/DraftStack 2>/dev/null | head -1 || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: xzcat main-data-core.tar.xz | tar xvf -
+      - run:
+          command: ./flush-worker && true
+
+workflows:
+  all:
+    jobs:
+      - c7x
+      - CREATEidx
+      - DogVs
+      - ruby3-lint:
+          requires:
+            - c7x
+            - CREATEidx
+            - DogVs
+      - sirius-beta:
+          requires:
+            - c7x
+            - CREATEidx
+            - DogVs
+      - Rollout_Suite4:
+          requires:
+            - c7x
+            - CREATEidx
+            - DogVs
+      - RUN_PROD:
+          requires:
+            - c7x
+            - CREATEidx
+            - DogVs
+      - DEPLOY_DEV:
+          requires:
+            - c7x
+            - CREATEidx
+            - DogVs
+      - tweak-router:
+          requires:
+            - c7x
+            - CREATEidx
+            - DogVs
+      - cf:
+          requires:
+            - c7x
+            - CREATEidx
+            - DogVs
+      - send-it:
+          requires:
+            - c7x
+            - CREATEidx
+            - DogVs
+      - bake-it:
+          requires:
+            - c7x
+            - CREATEidx
+            - DogVs
+      - assemble-staging-integration-tests:
+          requires:
+            - c7x
+            - CREATEidx
+            - DogVs
+      - rollout:
+          requires:
+            - c7x
+            - CREATEidx
+            - DogVs
+      - auh-check-33:
+          requires:
+            - c7x
+            - CREATEidx
+            - DogVs
+      - b-01:
+          requires:
+            - c7x
+            - CREATEidx
+            - DogVs
+      - ichDeep
+      - ServerLoose
+      - ShallowCommentLoader
+      - fx-new:
+          requires:
+            - ichDeep
+            - ServerLoose
+            - ShallowCommentLoader
+      - add-router-v2-bug:
+          requires:
+            - ichDeep
+            - ServerLoose
+            - ShallowCommentLoader
+      - preview:
+          requires:
+            - ichDeep
+            - ServerLoose
+            - ShallowCommentLoader
+      - ShipSuite:
+          requires:
+            - ichDeep
+            - ServerLoose
+            - ShallowCommentLoader
+      - qa:
+          requires:
+            - ichDeep
+            - ServerLoose
+            - ShallowCommentLoader
+      - bravo-1:
+          requires:
+            - ichDeep
+            - ServerLoose
+            - ShallowCommentLoader
+      - papa-9:
+          requires:
+            - ichDeep
+            - ServerLoose
+            - ShallowCommentLoader
+      - andromeda:
+          requires:
+            - ichDeep
+            - ServerLoose
+            - ShallowCommentLoader
+      - UAT_HOOK_8:
+          requires:
+            - ichDeep
+            - ServerLoose
+            - ShallowCommentLoader
+      - INFRA-925:
+          requires:
+            - ichDeep
+            - ServerLoose
+            - ShallowCommentLoader
+      - spin-up:
+          requires:
+            - ichDeep
+            - ServerLoose
+            - ShallowCommentLoader
+      - smoke:
+          requires:
+            - ichDeep
+            - ServerLoose
+            - ShallowCommentLoader
+      - check-staging-test-matrix:
+          requires:
+            - ichDeep
+            - ServerLoose
+            - ShallowCommentLoader
+      - verify-partial-artifact-bundle:
+          requires:
+            - ichDeep
+            - ServerLoose
+            - ShallowCommentLoader
+      - fiona-push:
+          requires:
+            - ichDeep
+            - ServerLoose
+            - ShallowCommentLoader
+      - java17-ship:
+          requires:
+            - ichDeep
+            - ServerLoose
+            - ShallowCommentLoader
+      - ken-ci:
+          requires:
+            - ichDeep
+            - ServerLoose
+            - ShallowCommentLoader
